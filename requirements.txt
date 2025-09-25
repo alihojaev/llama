@@ -10,5 +10,12 @@ uvicorn[standard]
 requests
 runpod
 easydict
+scikit-learn
+albumentations
+omegaconf
+hydra-core
+lpips
+tqdm
+torch-fidelity
 
 
