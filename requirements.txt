@@ -17,5 +17,8 @@ hydra-core
 lpips
 tqdm
 torch-fidelity
+pandas
+scipy
+timm
 
 
