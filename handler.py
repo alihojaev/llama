@@ -12,6 +12,8 @@ from PIL import Image
 
 
 def _decode_image(b64: str) -> Image.Image:
+    if b64.startswith("data:"):
+        b64 = b64.split(",", 1)[1]
     data = base64.b64decode(b64)
     return Image.open(io.BytesIO(data))
 

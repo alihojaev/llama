@@ -22,6 +22,9 @@ class InpaintRequest(BaseModel):
 
 def _decode_b64_image(data_b64: str) -> Image.Image:
     try:
+        # Allow data URLs like "data:image/png;base64,...."
+        if data_b64.startswith("data:"):
+            data_b64 = data_b64.split(",", 1)[1]
         raw = base64.b64decode(data_b64, validate=True)
         return Image.open(io.BytesIO(raw)).convert("RGBA")
     except Exception as e:
