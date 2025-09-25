@@ -22,8 +22,13 @@ if [ ! -d "$MODEL_DIR" ]; then
   rm -f "$ZIP_PATH"
 fi
 
-PORT="${PORT:-7860}"
-echo "[start.sh] Starting FastAPI with Uvicorn on 0.0.0.0:${PORT}"
-exec python3 -m uvicorn app:app --app-dir /workspace --host 0.0.0.0 --port "${PORT}"
+if [ "${RUNPOD_SERVERLESS:-0}" = "1" ]; then
+  echo "[start.sh] Starting Runpod Serverless handler"
+  exec python3 /workspace/handler.py
+else
+  PORT="${PORT:-7860}"
+  echo "[start.sh] Starting FastAPI with Uvicorn on 0.0.0.0:${PORT}"
+  exec python3 -m uvicorn app:app --app-dir /workspace --host 0.0.0.0 --port "${PORT}"
+fi
 
 
