@@ -1,0 +1,14 @@
+# build context hygiene
+.git
+__pycache__
+*.py[cod]
+*.log
+*.zip
+venv
+.venv
+.DS_Store
+.idea
+.vscode
+input
+output
+big-lama
