@@ -33,6 +33,7 @@ WORKDIR /workspace/lama
 # App entrypoint
 COPY start.sh /workspace/start.sh
 COPY app.py /workspace/app.py
+COPY handler.py /workspace/handler.py
 RUN chmod +x /workspace/start.sh
 
 EXPOSE 7860
