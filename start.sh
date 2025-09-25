@@ -22,6 +22,9 @@ if [ ! -d "$MODEL_DIR" ]; then
   rm -f "$ZIP_PATH"
 fi
 
+export PYTHONPATH="/workspace/lama:${PYTHONPATH:-}"
+export TORCH_HOME="/workspace/lama"
+
 # Default to serverless; set USE_HTTP=1 to run HTTP API
 if [ "${USE_HTTP:-0}" = "1" ]; then
   PORT="${PORT:-7860}"

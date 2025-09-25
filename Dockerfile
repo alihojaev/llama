@@ -28,6 +28,9 @@ RUN python3 -m pip install --no-cache-dir --upgrade pip setuptools wheel && \
     python3 -m pip install --no-cache-dir -r /workspace/requirements.txt && \
     python3 -m pip install --no-cache-dir torch==1.8.0 torchvision==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html
 
+# Ensure LaMa package is discoverable by Python
+ENV PYTHONPATH=/workspace/lama TORCH_HOME=/workspace/lama
+
 WORKDIR /workspace/lama
 
 # App entrypoint
