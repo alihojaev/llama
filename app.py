@@ -77,7 +77,7 @@ def inpaint(req: InpaintRequest) -> dict:
         raise HTTPException(status_code=500, detail="Model weights not found. They should be downloaded at startup.")
 
     cmd = [
-        "python3.8",
+        "python3",
         "bin/predict.py",
         f"model.path={model_dir}",
         f"indir={input_root}",

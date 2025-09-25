@@ -3,7 +3,7 @@
 Репозиторий для деплоя LaMa Inpainting модели (`advimman/lama`) как API-сервис на FastAPI. Модельные веса скачиваются автоматически из Hugging Face при старте контейнера.
 
 ### Что внутри
-- Dockerfile (CUDA 12.2 runtime + Python 3.8)
+- Dockerfile (CUDA 12.2 runtime + Python 3)
 - requirements.txt (включая `torch==1.8.0`, `torchvision==0.9.0`)
 - app.py (FastAPI, эндпоинт POST `/inpaint`)
 - start.sh (скачивает модель Big LaMa и запускает Uvicorn)
