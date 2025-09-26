@@ -32,8 +32,7 @@ def handler(event: Dict[str, Any]) -> Dict[str, Any]:
     request_id = uuid.uuid4().hex[:12]
     input_root = workspace / "input" / request_id
     output_root = workspace / "output" / request_id
-    (input_root / "mask").mkdir(parents=True, exist_ok=True)
-    (input_root / "masks").mkdir(parents=True, exist_ok=True)
+    input_root.mkdir(parents=True, exist_ok=True)
     output_root.mkdir(parents=True, exist_ok=True)
 
     image = _decode_image(image_b64).convert("RGB")
@@ -43,11 +42,10 @@ def handler(event: Dict[str, Any]) -> Dict[str, Any]:
     mask = mask.point(lambda x: 255 if x > 0 else 0)
 
     image_path = input_root / "image.png"
-    mask_path1 = input_root / "mask" / "image.png"
-    mask_path2 = input_root / "masks" / "image.png"
+    # LaMa dataset expects mask filenames to contain "mask" and live alongside the image
+    mask_path = input_root / "image_mask.png"
     image.save(image_path)
-    mask.save(mask_path1)
-    mask.save(mask_path2)
+    mask.save(mask_path)
 
     if not model_dir.exists():
         return {"error": "Model weights not found"}
