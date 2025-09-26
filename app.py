@@ -54,7 +54,7 @@ def inpaint(req: InpaintRequest) -> dict:
     output_root = workspace / "output" / request_id
 
     # Prepare IO dirs
-    for p in [input_root, output_root, input_root / "mask", input_root / "masks"]:
+    for p in [input_root, output_root]:
         p.mkdir(parents=True, exist_ok=True)
 
     # Decode inputs
@@ -68,12 +68,11 @@ def inpaint(req: InpaintRequest) -> dict:
     mask = mask.point(lambda x: 255 if x > 0 else 0)
 
     image_path = input_root / "image.png"
-    mask_path_1 = input_root / "mask" / "image.png"
-    mask_path_2 = input_root / "masks" / "image.png"
+    # LaMa expects mask files matching pattern *mask*.png in the same tree as images
+    mask_path = input_root / "image_mask.png"
 
     _save_image(image, image_path)
-    mask.save(mask_path_1)
-    mask.save(mask_path_2)
+    mask.save(mask_path)
 
     # Run LaMa predict
     if not model_dir.exists():

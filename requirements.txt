@@ -1,7 +1,7 @@
 torch==1.8.0
 torchvision==0.9.0
 pytorch-lightning==1.2.9
-opencv-python
+opencv-python-headless
 numpy
 pillow
 scikit-image
@@ -11,7 +11,8 @@ requests
 runpod
 easydict
 scikit-learn
-albumentations
+albumentations==0.5.2
+imgaug==0.4.0
 omegaconf
 hydra-core
 lpips
@@ -20,5 +21,10 @@ torch-fidelity
 pandas
 scipy
 timm
+
+# Added for LaMa runtime compatibility
+kornia==0.5.8
+webdataset
+PyYAML>=6.0
 
 
